@@ -140,6 +140,20 @@
     resetForm();
   };
 
+  const openModalInEditMode = (id) => {
+    const record = getRecordById(id);
+    if (record) {
+      FIELD_NAMES.forEach(field => {
+        d[g](field).value = record[field];
+      });
+
+      const createButton = d.querySelector('.create');
+      createButton.textContent = 'EDIT';
+
+      openModal(id);
+    }
+  }
+
   const resetForm = () => {
     for (const fieldId of FIELD_NAMES) {
       d[g](fieldId).value = '';
@@ -204,31 +218,33 @@
 
       const actionCell = d[c]('td');
       actionCell.className = 'action-buttons';
-      actionCell.appendChild(createLink('#', '👤', '_blank'));
-      actionCell.lastChild.onclick = (event) => {
-        event.preventDefault();
-        openSSOLink(id);
-      };
-      actionCell.appendChild(createLink('#', '📝'));
-      actionCell.lastChild.onclick = (event) => {
-        event.preventDefault();
-        openModalInEditMode(id);
-      };
-      actionCell.appendChild(createLink('#', '🆕'));
-      actionCell.lastChild.onclick = () => {
-        event.preventDefault();
-        cloneRecord(id);
-      };
-      actionCell.appendChild(createLink('#', '🗑️'));
-      actionCell.lastChild.onclick = () => {
-        event.preventDefault();
-        deleteRecord(id);
-      };
+      actionCell.appendChild(createLink(buildSSOLink({
+        id,
+        identityCenterAlias,
+        accountId,
+        roleName,
+        redirectUri,
+      }), '👤', '_blank'));
+
+      const actions = [
+        { emoji: '📝', action: () => openModalInEditMode(id) },
+        { emoji: '🆕', action: () => cloneRecord(id) },
+        { emoji: '🗑️', action: () => deleteRecord(id) }
+      ];
+
+      for (const { emoji, action } of actions) {
+        const link = createLink('#', emoji);
+        link.onclick = (event) => {
+          event.preventDefault();
+          action();
+        };
+        actionCell.appendChild(link);
+      }
+
       row.appendChild(actionCell);
+      row.addEventListener('mousedown', mouseDownHandler);
 
       tableBody.appendChild(row);
-
-      row.addEventListener('mousedown', mouseDownHandler);
     });
   }
 
@@ -248,30 +264,6 @@
   const getRecordById = (id) => {
     const roleList = loadDataFromLocalStorage();
     return roleList.find(r => r.id === id);
-  }
-
-  const openSSOLink = (id) => {
-    const record = getRecordById(id);
-    if (record) {
-      const ssoLink = buildSSOLink(record);
-      window.open(ssoLink, '_blank');
-    } else {
-      alert('Record not found.');
-    }
-  }
-
-  const openModalInEditMode = (id) => {
-    const record = getRecordById(id);
-    if (record) {
-      FIELD_NAMES.forEach(field => {
-        d[g](field).value = record[field];
-      });
-
-      const createButton = d.querySelector('.create');
-      createButton.textContent = 'EDIT';
-
-      openModal(id);
-    }
   }
 
   const createRecord = () => {
