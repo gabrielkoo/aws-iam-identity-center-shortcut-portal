@@ -8,7 +8,7 @@
   const createRecordBtn = d[g]('createRecord');
 
   const loadDataFromLocalStorage = () => {
-    const roleList = localStorage.getItem('roleList');
+    const roleList = localStorage.getItem('roleList') || '[]';
     if (roleList) {
       return JSON.parse(roleList);
     }
