@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AWS IAM Identity Center Access Role Portal - Access all shortcuts in one place.">
+  <title>AWS IAM Identity Center - Access Role Portal</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="header">
+    <h1>AWS IAM Identity Center Access Role Portal</h1>
+  </div>
+
+  <div class="container">
+    <div class="controls">
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search...">
+      </div>
+
+      <div class="buttons">
+        <button id="openModal" class="open-modal">Create Role Record</button>
+      </div>
+    </div>
+
+    <table id="roleTable">
+      <thead>
+        <tr>
+          <th>Identity Center Alias</th>
+          <th>Account</th>
+          <th>Role Name</th>
+          <th>Display Name</th>
+          <th>Redirect URI</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="recordsTable"></tbody>
+    </table>
+  </div>
+
+  <div class="footer">
+    <p>
+      Best viewed in desktop mode with at least 1024px width.
+    </p>
+    <p>
+      Report a problem / Contribute <a href="https://github.com/gabrielkoo/aws-identity-center-shortcut-portal" target="_blank" rel="noopener noreferrer">here</a>
+    </p>
+    <p>
+      Created by <a href="https://gabrielkoo.com/" target="_blank" rel="noopener noreferrer">Gabriel Koo</a>, AWS Community Builder
+    </p>
+  </div>
+
+  <div id="createModal" class="modal">
+    <div class="modal-content">
+      <span id="closeModal" class="close">&times;</span>
+      <h2 id="createModalTitle">Create Role Record</h2>
+      <input type="text" id="identityCenterAlias" placeholder="Identity Center Alias (e.g. your-org-name)">
+      <input type="text" id="accountId" placeholder="Account ID (e.g. 1234567890)" allowPattern="[0-9]">
+      <input type="text" id="roleName" placeholder="Role Name (e.g. AdministratorAccess)" allowPattern="[a-zA-Z0-9_]+">
+      <input type="text" id="displayName" placeholder="Display Name (Optional)">
+      <input type="text" id="redirectUri" placeholder="Redirect URI (Optional)">
+      <hr>
+      <input type="text" id="pastedShortcut" placeholder="Pasted the shortcut link from Identity Center to prefill values">
+      <div class="buttons">
+        <button id="cancel" class="cancel">CANCEL</button>
+        <button id="createRecord" class="create">CREATE</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="/scripts.js"></script>
+</body>
+</html>
