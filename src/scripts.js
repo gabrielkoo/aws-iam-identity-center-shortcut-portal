@@ -198,11 +198,13 @@
         return cell;
       };
 
-      const createLink = (href, text, target = '') => {
+      const createLink = (href, text) => {
         const link = d[c]('a');
         link.href = href;
+        link.style.textDecoration = 'none';
         link.textContent = text;
-        if (target) link.target = target;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
         return link;
       };
 
@@ -212,7 +214,7 @@
 
       const redirectCell = createCell();
       if (redirectUri) {
-        redirectCell.appendChild(createLink(redirectUri, 'Link'));
+        redirectCell.appendChild(createLink(redirectUri, '🔗'));
       }
       row.appendChild(redirectCell);
 
@@ -320,6 +322,23 @@
     }
   }
 
+  const exportAsUrl = () => {
+    const dataInBase64String = btoa(JSON.stringify(loadDataFromLocalStorage()));
+    const url = `${window.location.origin}#data=${dataInBase64String}`;
+
+    // TODO: Create a modal to let user copy
+    d[g]('exportedUrl').value = url;
+    d[g]('exportAsUrlModal').style.display = 'block';
+
+  };
+
+  const importFromUrl = (b64String) => {
+    if (!b64String) return;
+    const roleList = JSON.parse(atob(b64String));
+    saveDataToLocalStorage(roleList);
+    renderTable();
+  };
+
   d[g]('pastedShortcut').addEventListener('input', (event) => {
     const shortcutLink = event.target.value;
     if (!shortcutLink) return;
@@ -349,6 +368,23 @@
   e(d[g]('closeModal'), closeModal);
   e(d[g]('cancel'), closeModal);
   e(d[g]('createRecord'), createRecord);
+  e(d[g]('exportAsUrl'), exportAsUrl);
+  e(d[g]('closeExportAsUrlModal'), () => d[g]('exportAsUrlModal').style.display = 'none');
+  e(d[g]('copyExportedUrl'), () => {
+    navigator.clipboard.writeText(d[g]('exportedUrl').value);
+    d[g]('exportedUrl').select();
+    d[g]('copyExportedUrl').textContent = 'COPIED!';
+    setTimeout(() => {
+      d[g]('copyExportedUrl').textContent = 'COPY';
+    }, 5000);
+  });
+
+  const hashParams = new URLSearchParams(window.location.hash.slice(1));
+  const dataInBase64String = hashParams.get('data');
+  if (dataInBase64String) {
+    importFromUrl(dataInBase64String);
+    window.history.replaceState({}, document.title, window.location.origin);
+  }
 
   renderTable();
 })(

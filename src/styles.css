@@ -118,12 +118,21 @@ input, select {
   margin-left: 10px;
 }
 
+.open-modal-button {
+  background-color: #EEE;
+  color: #333;
+  font-size: 24px;
+}
+
+.open-modal-button:hover {
+  background-color: #FF9900;
+}
+
 .cancel {
   background-color: #EEE;
   color: #333;
 }
 
-.open-modal,
 .create {
   background-color: #ff9900;
   color: white;

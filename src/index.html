@@ -20,7 +20,8 @@
       </div>
 
       <div class="buttons">
-        <button id="openModal" class="open-modal">Create Role Record</button>
+        <button id="openModal" class="open-modal open-modal-button">🆕</button>
+        <button id="exportAsUrl" class="export-as-url open-modal-button">💾</button>
       </div>
     </div>
 
@@ -41,10 +42,7 @@
 
   <div class="footer">
     <p>
-      Best viewed in desktop mode with at least 1024px width.
-    </p>
-    <p>
-      Report a problem / Contribute <a href="https://github.com/gabrielkoo/aws-identity-center-shortcut-portal" target="_blank" rel="noopener noreferrer">here</a>
+      Best in desktop screen size. Report a problem or contribute <a href="https://github.com/gabrielkoo/aws-identity-center-shortcut-portal" target="_blank" rel="noopener noreferrer">here</a>
     </p>
     <p>
       Created by <a href="https://gabrielkoo.com/" target="_blank" rel="noopener noreferrer">Gabriel Koo</a>, AWS Community Builder
@@ -65,6 +63,20 @@
       <div class="buttons">
         <button id="cancel" class="cancel">CANCEL</button>
         <button id="createRecord" class="create">CREATE</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="exportAsUrlModal" class="modal">
+    <div class="modal-content">
+      <span id="closeExportAsUrlModal" class="close">&times;</span>
+      <h2 id="exportAsUrlModalTitle">Export as URL</h2>
+      <p>
+        Copy the URL below and share it with others.
+      </p>
+      <input type="text" id="exportedUrl" readonly>
+      <div class="buttons">
+        <button id="copyExportedUrl" class="copy">COPY</button>
       </div>
     </div>
   </div>
