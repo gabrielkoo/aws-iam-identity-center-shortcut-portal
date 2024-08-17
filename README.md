@@ -2,9 +2,11 @@
 
 AWS IAM Identity Center Access Role Portal - Deeplink your AWS Console access to its finest!
 
-Know more about why this project was created: [Dev.to](https://dev.to/aws-builders/deep-linking-aws-console-with-yall-your-aws-iam-identity-center-roles-3pgn)
+Know more about why this project was created: [Dev.to](https://dev.to/aws-builders/deep-linking-aws-console-with-all-your-aws-iam-identity-center-roles-148c)
 
 ## Overview
+
+<img width="944" alt="roleList" src="https://github.com/user-attachments/assets/c8a20245-7cda-4ad9-b470-978f309634ff">
 
 This tool provides a web-based interface for managing access roles in AWS IAM Identity Center (formerly AWS Single Sign-On). It allows users to easily create, view, edit, and delete role records associated with Identity Center aliases and AWS accounts.
 
@@ -43,6 +45,7 @@ The main page displays a table with the following columns:
    - Redirect URI
 4. Alternatively, create the shortcut within your AWS IAM Identity Center start page, then paste the shortcut link from Identity Center to prefill values
 5. Click "CREATE" to add the new role record
+<img width="443" alt="RoleCreation" src="https://github.com/user-attachments/assets/c011f8e6-d217-4235-b918-fcc6b31417dd">
 
 ### Editing a Role Record
 
@@ -57,6 +60,13 @@ Click the "Delete" action for the role you wish to remove.
 ### Using a Role
 
 Click the "Use Role" action to directly access the role via the specified redirect URI.
+
+### Export & Import
+
+You can Click the "💾" button on top right corner to export your current role list as a deep linked URL,
+so that your teammates get share the same set of URLs as you, saving time for onboarding!
+
+<img width="441" alt="ExportFunction" src="https://github.com/user-attachments/assets/36f93ae1-1ecf-409c-b243-3939fff86c27">
 
 ## Security Considerations
 
