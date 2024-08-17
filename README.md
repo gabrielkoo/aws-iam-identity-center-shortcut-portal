@@ -2,6 +2,8 @@
 
 AWS IAM Identity Center Access Role Portal - Deeplink your AWS Console access to its finest!
 
+Know more about why this project was created: [Dev.to](https://dev.to/aws-builders/deep-linking-aws-console-with-yall-your-aws-iam-identity-center-roles-3pgn)
+
 ## Overview
 
 This tool provides a web-based interface for managing access roles in AWS IAM Identity Center (formerly AWS Single Sign-On). It allows users to easily create, view, edit, and delete role records associated with Identity Center aliases and AWS accounts.
