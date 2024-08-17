@@ -4,4 +4,4 @@
   Referrer-Policy: strict-origin-when-cross-origin
 
 /
-  Content-Security-Policy: default-src 'none'; style-src 'self'; script-src 'self' https://static.cloudflareinsights.com sha256-ixE85/gvd3wjqD+SnM6NvCtdTQSdhDeVpv69AX6pgRE=; connect-src https://cloudflareinsights.com;
+  Content-Security-Policy: default-src 'none'; style-src 'self'; script-src 'self' https://static.cloudflareinsights.com 'unsafe-inline'; connect-src https://cloudflareinsights.com;
